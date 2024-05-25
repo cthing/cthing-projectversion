@@ -1,0 +1,21 @@
+[versions]
+java = "17"
+checkstyle = "10.16.0"
+jacoco = "0.8.12"
+junit = "5.10.2"
+spotbugs = "4.8.5"
+
+[plugins]
+dependencyAnalysis = { id = "com.autonomousapps.dependency-analysis", version = "1.32.0" }
+spotbugs = { id = "com.github.spotbugs", version = "6.0.15" }
+versions = { id = "com.github.ben-manes.versions", version = "0.51.0" }
+
+[libraries]
+assertJ = "org.assertj:assertj-core:3.25.3"
+equalsVerifier = "nl.jqno.equalsverifier:equalsverifier:3.16.1"
+jsr305 = "com.google.code.findbugs:jsr305:3.0.2"
+junitApi = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit" }
+junitEngine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit" }
+junitLauncher = "org.junit.platform:junit-platform-launcher:1.10.2"
+spotbugsContrib = "com.mebigfatguy.sb-contrib:sb-contrib:7.6.4"
+systemLambda = "com.github.stefanbirkner:system-lambda:1.2.1"
