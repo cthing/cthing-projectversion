@@ -62,10 +62,10 @@ Perform the following steps to create a release.
     - Set `isSnapshot` to `false`
 - Commit the changes
 - Wait until CI builds the release candidate
-- Run the command `mkrelease filevisitor <version>`
+- Run the command `mkrelease cthing-projectversion <version>`
 - In a browser go to the [Maven Central Repository Manager](https://s01.oss.sonatype.org/)
 - Log in
-- Use the `Staging Upload` to upload the generated artifact bundle `filevisitor-bundle-<version>.jar`
+- Use the `Staging Upload` to upload the generated artifact bundle `cthing-projectversion-bundle-<version>.jar`
 - Click on `Staging Repositories`
 - Once it is enabled, press `Release` to release the artifacts to Maven Central
 - Log out
