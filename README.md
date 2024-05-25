@@ -1,5 +1,9 @@
 # ![C Thing Software](https://www.cthing.com/branding/CThingSoftware-57x60.png "C Thing Software") cthing-projectversion
 
+[![CI](https://github.com/cthing/cthing-projectversion/actions/workflows/ci.yml/badge.svg)](https://github.com/cthing/cthing-projectversion/actions/workflows/ci.yml)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.cthing/cthing-projectversion/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.cthing/cthing-projectversion)
+[![javadoc](https://javadoc.io/badge2/org.cthing/cthing-projectversion/javadoc.svg)](https://javadoc.io/doc/org.cthing/cthing-projectversion)
+
 A version object for C Thing Software projects. This is a semantic version with additional build identification
 information. The additional information indicates the build type and whether the build is being performed by the
 C Thing Software Continuous Integration service or on a developer's machine. The following versioning scheme is
