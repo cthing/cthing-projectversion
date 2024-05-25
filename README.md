@@ -36,6 +36,15 @@ The typical usage of this class is to set the version in Gradle build files for 
 import org.cthing.projectversion.BuildType
 import org.cthing.projectversion.ProjectVersion
 ...
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(libs.cthingProjectVersion)
+    }
+}
+...
 version = ProjectVersion("1.2.3", BuildType.snapshot)
 ...
 ```
