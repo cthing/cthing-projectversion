@@ -1,10 +1,18 @@
 import com.github.spotbugs.snom.Confidence
 import com.github.spotbugs.snom.Effort
+import org.cthing.projectversion.BuildType
+import org.cthing.projectversion.ProjectVersion
 import java.text.SimpleDateFormat
 import java.util.*
 
 repositories {
     mavenCentral()
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
 }
 
 plugins {
@@ -13,17 +21,13 @@ plugins {
     jacoco
     `maven-publish`
     signing
+    alias(libs.plugins.cthingVersioning)
     alias(libs.plugins.dependencyAnalysis)
     alias(libs.plugins.spotbugs)
     alias(libs.plugins.versions)
 }
 
-val baseVersion = "1.0.1"
-val isSnapshot = true
-
-val isCIServer = System.getenv("CTHING_CI") != null
-val buildNumber = if (isCIServer) System.currentTimeMillis().toString() else "0"
-version = if (isSnapshot) "$baseVersion-$buildNumber" else baseVersion
+version = ProjectVersion("1.0.1", BuildType.snapshot)
 group = "org.cthing"
 description = "A version object for C Thing Software projects."
 
@@ -208,7 +212,8 @@ publishing {
         }
     }
 
-    val repoUrl = if (isSnapshot) findProperty("cthing.nexus.snapshotsUrl") else findProperty("cthing.nexus.candidatesUrl")
+    val repoUrl = if ((version as ProjectVersion).isSnapshotBuild)
+        findProperty("cthing.nexus.snapshotsUrl") else findProperty("cthing.nexus.candidatesUrl")
     if (repoUrl != null) {
         repositories {
             maven {
