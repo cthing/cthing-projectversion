@@ -6,7 +6,7 @@
 /**
  * Provides a version object for C Thing Software projects.
  */
-@ParametersAreNonnullByDefault
+@NullMarked
 package org.cthing.projectversion;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import org.jspecify.annotations.NullMarked;

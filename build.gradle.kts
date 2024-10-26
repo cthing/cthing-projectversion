@@ -19,7 +19,7 @@ plugins {
     alias(libs.plugins.versions)
 }
 
-val baseVersion = "1.0.1"
+val baseVersion = "2.0.0"
 val isSnapshot = true
 
 val isCIServer = System.getenv("CTHING_CI") != null
@@ -39,7 +39,7 @@ java {
 // This project is a dependency of all C Thing Software projects. Therefore, to avoid circular
 // dependencies, it should not depend on any C Thing Software project.
 dependencies {
-    api(libs.jsr305)
+    api(libs.jspecify)
 
     testImplementation(libs.assertJ)
     testImplementation(libs.equalsVerifier)
