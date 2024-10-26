@@ -20,7 +20,7 @@ plugins {
 }
 
 val baseVersion = "2.0.0"
-val isSnapshot = true
+val isSnapshot = false
 
 val isCIServer = System.getenv("CTHING_CI") != null
 val buildNumber = if (isCIServer) System.currentTimeMillis().toString() else "0"
