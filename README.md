@@ -23,12 +23,12 @@ the following Maven dependency:
 <dependency>
   <groupId>org.cthing</groupId>
   <artifactId>cthing-projectversion</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
 </dependency>
 ```
 or the following Gradle dependency:
 ```kotlin
-implementation("org.cthing:cthing-projectversion:1.0.0")
+implementation("org.cthing:cthing-projectversion:2.0.0")
 ```
 
 The typical usage of this class is to set the version in Gradle build files for C Thing Software projects.
