@@ -1,6 +1,9 @@
 import com.github.spotbugs.snom.Confidence
 import com.github.spotbugs.snom.Effort
 import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.time.Instant
+import java.time.ZoneOffset
 import java.util.Date
 import java.util.Locale
 
@@ -23,7 +26,12 @@ val baseVersion = "2.0.1"
 val isSnapshot = true
 
 val isCIServer = System.getenv("CTHING_CI") != null
-val buildNumber = if (isCIServer) System.currentTimeMillis().toString() else "0"
+val now = System.currentTimeMillis()
+val buildNumber = if (isCIServer) now.toString() else "0"
+val buildDate: String = Instant.ofEpochMilli(now)
+                               .atOffset(ZoneOffset.UTC)
+                               .format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
+
 version = if (isSnapshot) "$baseVersion-$buildNumber" else baseVersion
 group = "org.cthing"
 description = "A version object for C Thing Software projects."
@@ -38,6 +46,17 @@ java {
 //
 // This project is a dependency of all C Thing Software projects. Therefore, to avoid circular
 // dependencies, it should not depend on any C Thing Software project.
+configurations.all {
+    resolutionStrategy {
+        eachDependency {
+            val prohibitedGroups = listOf("org.cthing", "com.cthing")
+            if (requested.group in prohibitedGroups) {
+                throw GradleException("A dependency on '${requested.group}:${requested.name}' is prohibited.")
+            }
+        }
+    }
+}
+
 dependencies {
     api(libs.jspecify)
 
@@ -181,6 +200,10 @@ publishing {
                 name = project.name
                 description = project.description
                 url = "https://github.com/cthing/${project.name}"
+                organization {
+                    name = "C Thing Software"
+                    url = "https://www.cthing.com"
+                }
                 licenses {
                     license {
                         name = "Apache-2.0"
@@ -205,6 +228,12 @@ publishing {
                     system = "GitHub Issues"
                     url = "https://github.com/cthing/${project.name}/issues"
                 }
+                ciManagement {
+                    url = "https://github.com/cthing/${project.name}/actions"
+                    system = "GitHub Actions"
+                }
+                properties.putAll(mapOf("cthing.build.date" to buildDate,
+                                        "cthing.build.number" to buildNumber))
             }
         }
     }
